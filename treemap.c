@@ -164,66 +164,49 @@ void delete(Tree* tree, int key) {
 }
 */
 void removeNode(TreeMap * tree, TreeNode* node) {
-  if (tree == NULL) return;
-
-  TreeNode* temp = tree->root;
-  TreeNode* parent = NULL;
-
-  // Buscamos nodo a eliminar
-  while (temp != NULL && !is_equal(tree, node->pair->key, temp->pair->key)){
-    parent = temp;
-    if (tree->lower_than(node->pair->key, temp->pair->key)){
-      temp = temp->left;
-    } else {
-      temp = temp->right;
-    }
-  }
+  if (tree == NULL || tree->root == NULL || node == NULL) return;
   
   if (temp == NULL){ // el nodo no se encontro
     return;
   }
   
   // Caso 1 Nodo hoja
-  if (temp->left == NULL && temp->right == NULL){
-    if(parent != NULL) {
-      if (parent->left == temp){
-        parent->left = NULL;
-      } else {
-        parent->right = NULL;
+  if (node->left == NULL && node->right == NULL){
+    if(node->parent != NULL) {
+      if (node->parent->left == node){
+        node->parent->left = NULL;
+      } else if (node->parent->right == node){
+        node->parent->right = NULL;
       }
     } else {
       tree->root = NULL;
     }
 
-    free(temp);
+    free(node->pair);
+    free(node);
   
   // Caso 2 1 Hijo  
-  } else if (temp->left == NULL || temp->right == NULL){
-    TreeNode* hijo;
-    if (temp->left != NULL){
-      hijo = temp->left;
-    } else {
-      hijo = temp->right;
-    }
-    if (temp != tree->root){
-      if (parent->left == temp){
-        parent->left = hijo;
-        //hijo->parent = temp->parent;
-      } else {
-        parent->right = hijo;
-        //hijo->parent = temp->parent;
+  } else if (node->left == NULL || node->right == NULL){
+    TreeNode* hijo = (node->left != NULL) ? node->left : node->right;
+    if (node->parent != NULL){
+      if (node->parent->left == node){
+        node->parent->left = hijo;
+      } else if (node->parent->right == node){
+        node->parent->right = hijo;
       }
+      hijo->parent = node->parent;
     } else {
       tree->root = hijo;
+      hijo->parent = NULL;
     }
-
-    free(temp);
+    free(node->pair);
+    free(node);
+    
   // 2 Hijos
   } else {
-    TreeNode* siguiente = minimum(temp->right);
-    node->pair->key = siguiente->pair->key;
-    node->pair->value = siguiente->pair->value;
-    removeNode(tree,siguiente);
+    TreeNode* min = minimum(node->right);
+    node->pair = min->pair;
+    removeNode(tree, min);
   }
   
 }

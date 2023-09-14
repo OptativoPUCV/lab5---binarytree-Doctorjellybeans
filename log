@@ -153,3 +153,14 @@ Thu 14 Sep 2023 04:24:42 PM UTC:
  tests:  16|4
 total_score: 30/70
 6fcf77d
+Thu 14 Sep 2023 04:39:44 PM UTC: 
+ treemap.c | 65 +++++++++++++++++++++++----------------------------------------
+ 1 file changed, 24 insertions(+), 41 deletions(-)
+In file included from test.c:4:
+treemap.c: In function ‘removeNode’:
+treemap.c:169:7: error: ‘temp’ undeclared (first use in this function)
+  169 |   if (temp == NULL){ // el nodo no se encontro
+      |       ^~~~
+treemap.c:169:7: note: each undeclared identifier is reported only once for each function it appears in
+Compilation failed
+7e6e27f
