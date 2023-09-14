@@ -205,12 +205,13 @@ void removeNode(TreeMap * tree, TreeNode* node) {
     } else {
       hijo = temp->right;
     }
-    //hijo->parent = parent;
     if (temp != tree->root){
       if (parent->left == temp){
         parent->left = hijo;
+        //hijo->parent = temp->parent;
       } else {
         parent->right = hijo;
+        //hijo->parent = temp->parent;
       }
     } else {
       tree->root = hijo;
