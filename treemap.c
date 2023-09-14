@@ -51,28 +51,40 @@ void insertTreeMap(TreeMap * tree, void* key, void * value) {
 
   TreeNode* nuevoNodo = createTreeNode(key, value);
   if (tree->root == NULL){
+    
     tree->root = nuevoNodo;
     tree->current = nuevoNodo;
+  
   } else {
+
+    // Partimos desde la raiz para hacer las comparaciones
     TreeNode* current = tree->root;
     while (1){
-      if (is_equal(tree, key, current->pair->key)){
+      if (is_equal(tree, key, current->pair->key)){ // si key es igual
+        
         free(nuevoNodo);
         return;
-      } else if (tree->lower_than(key,current->pair->key)) {
-        if (current->left == NULL){
+      
+      } else if (tree->lower_than(key,current->pair->key)) { // si key es menor
+        
+        if (current->left == NULL){ // espacio vacio encontrado, insertar
           current->left = nuevoNodo;
           nuevoNodo->parent = current;
-        } else {
+          return;
+        } else { // seguir iterando
           current = current->left;
         }
-      } else {
-        if (current->right == NULL){
+        
+      } else { // si key es mayor
+        
+        if (current->right == NULL){ // espacio vacio encontrado, insertar
           current->right = nuevoNodo;
           nuevoNodo->parent = current;
-        } else {
+          return;  
+        } else { // seguir iterando
           current = current->right;
         }
+        
       }
     }
   }
@@ -107,17 +119,22 @@ Pair * searchTreeMap(TreeMap * tree, void* key) {
   TreeNode* current = tree->root;
   while (current != NULL){
     
-    if (is_equal(tree, key, current->pair->key)){ // si es igual
+    if (is_equal(tree, key, current->pair->key)){ // si key es igual
+      
       tree->current = current;
       return current->pair;
-    } else if (tree->lower_than(key,current->pair->key)){ // si es menor
+    
+    } else if (tree->lower_than(key,current->pair->key)){ // si key es menor
+      
       current = current->left;      
-    } else { // si es mayor
+    
+    } else { // si key es mayor
+      
       current = current->right;
+    
     }
   
   }
-  
   // Si no se encuentra la clave retorna NULL.
   tree->current = NULL;
   return NULL;
