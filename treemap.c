@@ -81,7 +81,7 @@ Pair * searchTreeMap(TreeMap * tree, void* key) {
     // En cada iteracion debemos de comparar las llaves para eso usamos
     // el puntero a la funcion del TreeNode (no tenia ni idea que podiamos hacer eso)
 
-    int cmp = tree->lower_than(key, current->pair->key);
+    int cmp = tree->is_equal(key, current->pair->key);
     printf("cmp: %d, key: %d, pair->key: %d\n", cmp, *((int*)key), *((int*)current->pair->key));
 
     if (cmp == 0){
