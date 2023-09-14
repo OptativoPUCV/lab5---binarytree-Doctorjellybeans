@@ -70,6 +70,7 @@ void insertTreeMap(TreeMap * tree, void* key, void * value) {
         if (current->left == NULL){ // espacio vacio encontrado, insertar
           current->left = nuevoNodo;
           nuevoNodo->parent = current;
+          tree->current = nuevoNodo;
           return;
         } else { // seguir iterando
           current = current->left;
@@ -80,6 +81,7 @@ void insertTreeMap(TreeMap * tree, void* key, void * value) {
         if (current->right == NULL){ // espacio vacio encontrado, insertar
           current->right = nuevoNodo;
           nuevoNodo->parent = current;
+          tree->current = nuevoNodo;
           return;  
         } else { // seguir iterando
           current = current->right;
