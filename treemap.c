@@ -288,10 +288,20 @@ treenode* next(treenode* nodo){
     }
 }
 */
+void printPair(Pair* pair) {
+    // Desreferencia los punteros para acceder a los valores
+    int* key = (int*)(pair->key);     // Suponiendo que las claves son enteros
+    int* value = (int*)(pair->value); // Suponiendo que los valores son enteros
+
+    // Imprime los valores
+    printf("Key: %d, Value: %d\n", *key, *value);
+}
+
 Pair * nextTreeMap(TreeMap * tree) {
   if (tree == NULL || tree->current == NULL){
     return NULL;
   }
+  printPair(tree->current->pair);
   
   if (tree->current->right != NULL){
     TreeNode* temp = tree->current;
