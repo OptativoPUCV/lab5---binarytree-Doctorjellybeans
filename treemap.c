@@ -16,7 +16,7 @@ struct TreeNode {
 struct TreeMap {
     TreeNode * root;
     TreeNode * current;
-    int (*lower_than) (void* key1, void* key2);
+    int (*lower_than) (void* key1, void* key2); // interesante
 };
 
 int is_equal(TreeMap* tree, void* key1, void* key2){
@@ -47,7 +47,35 @@ TreeMap * createTreeMap(int (*lower_than) (void* key1, void* key2)) {
 
 
 void insertTreeMap(TreeMap * tree, void* key, void * value) {
+  if (tree == NULL) return;
 
+  TreeNode* nuevoNodo = createTreeNode(key, value);
+  if (tree->root == NULL){
+    tree->root = nuevoNodo;
+    tree->current = nuevoNodo;
+  } else {
+    TreeNode* current = tree->root;
+    while (1){
+      if (is_equal(tree, key, current->pair->key)){
+        free(nuevoNodo);
+        return;
+      } else if (tree->lower_than(key,current->pair->key)) {
+        if (current->left == NULL){
+          current->left = nuevoNodo;
+          nuevoNodo->parent = current;
+        } else {
+          current = current->left;
+        }
+      } else {
+        if (current->right == NULL){
+          current->right = nuevoNodo;
+          nuevoNodo->parent = current;
+        } else {
+          current = current->right;
+        }
+      }
+    }
+  }
 }
 
 TreeNode * minimum(TreeNode * x){
@@ -78,20 +106,16 @@ Pair * searchTreeMap(TreeMap * tree, void* key) {
   // Exploremos desde la raiz
   TreeNode* current = tree->root;
   while (current != NULL){
-    // En cada iteracion debemos de comparar las llaves para eso usamos
-    // el puntero a la funcion del TreeNode (no tenia ni idea que podiamos hacer eso)
     
-    //printf("cmp: %d, key: %d, pair->key: %d\n", cmp, *((int*)key), *((int*)current->pair->key));
-
-    if (is_equal(tree, key, current->pair->key)){
+    if (is_equal(tree, key, current->pair->key)){ // si es igual
       tree->current = current;
       return current->pair;
-    } else if (tree->lower_than(key,current->pair->key)){
+    } else if (tree->lower_than(key,current->pair->key)){ // si es menor
       current = current->left;      
-    } else {
+    } else { // si es mayor
       current = current->right;
     }
-    
+  
   }
   
   // Si no se encuentra la clave retorna NULL.
