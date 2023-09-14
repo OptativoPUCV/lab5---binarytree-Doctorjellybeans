@@ -267,18 +267,41 @@ Pair * firstTreeMap(TreeMap * tree) {
   return NULL;
 }
 
+
+/*
+treenode* next(treenode* nodo){
+  if (nodo == NULL) return NULL;
+  Posclase #6.2 parte online 4
+  if(node->right != NULL) {
+    // Caso 1: Hay un subárbol derecho
+    treenode* temp = node;
+    while (temp->left != NULL) {
+      temp = temp->left;
+    }
+    return temp;
+  } else {
+    // Caso 2: No hay un subárbol derecho
+    treenode* temp = node;
+    while(temp->parent != NULL && temp->parent->right == temp)
+      temp = temp->parent;
+      return temp->parent;
+    }
+}
+*/
 Pair * nextTreeMap(TreeMap * tree) {
   if (tree == NULL || tree->current == NULL){
     return NULL;
   }
-
+  
   if (tree->current->right != NULL){
     tree->current = minimum(tree->current);
+    return tree->current->pair;
   } else {
-    TreeNode* padre = tree->current->parent;
-    while (padre != NULL && tree->current == padre->right){
-      tree->current = padre;
-      padre = padre->parent;
+    TreeNode* temp = tree->current;
+    while (temp->parent != NULL && temp->parent->right == temp){
+      temp = temp->parent;
+      tree->current = temp;
+      return temp->parent->pair;
     }
     tree->current = padre;
   }

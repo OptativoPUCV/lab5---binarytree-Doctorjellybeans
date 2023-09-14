@@ -260,3 +260,14 @@ Thu 14 Sep 2023 05:44:46 PM UTC:
  tests:  20|2
 total_score: 45/70
 acc9233
+Thu 14 Sep 2023 06:04:15 PM UTC: 
+ treemap.c | 31 +++++++++++++++++++++++++++----
+ 1 file changed, 27 insertions(+), 4 deletions(-)
+In file included from test.c:4:
+treemap.c: In function ‘nextTreeMap’:
+treemap.c:306:21: error: ‘padre’ undeclared (first use in this function)
+  306 |     tree->current = padre;
+      |                     ^~~~~
+treemap.c:306:21: note: each undeclared identifier is reported only once for each function it appears in
+Compilation failed
+26c365f
