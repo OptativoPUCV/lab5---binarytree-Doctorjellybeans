@@ -204,7 +204,7 @@ void removeNode(TreeMap * tree, TreeNode* node) {
     
   // 2 Hijos
   } else {
-    printf("key: %d\n", *((int*)node->pair->key);
+    printf("key: %d\n", *((int*)node->pair->key));
     TreeNode* min = minimum(node->right);
     node->pair = min->pair;
     
