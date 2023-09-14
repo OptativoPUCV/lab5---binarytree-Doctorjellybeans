@@ -256,7 +256,17 @@ Pair * searchTreeMap(TreeMap * tree, void* key) {
 Pair * upperBound(TreeMap * tree, void* key) {
     return NULL;
 }
-
+/*
+TreeNode * minimum(TreeNode * nodoX){
+  if (nodoX == NULL) return NULL;
+  
+  TreeNode* temp = nodoX;
+  while (temp->left != NULL){
+    temp = temp->left;
+  }
+  return temp;
+}
+*/
 Pair * firstTreeMap(TreeMap * tree) {
   if (tree == NULL || tree->root == NULL) return NULL;
 
@@ -267,6 +277,14 @@ Pair * firstTreeMap(TreeMap * tree) {
   return NULL;
 }
 
+void printPair(Pair* pair) {
+    // Desreferencia los punteros para acceder a los valores
+    int* key = (int*)(pair->key);     // Suponiendo que las claves son enteros
+    int* value = (int*)(pair->value); // Suponiendo que los valores son enteros
+
+    // Imprime los valores
+    printf("Key: %d, Value: %d\n", *key, *value);
+}
 
 /*
 treenode* next(treenode* nodo){
@@ -288,15 +306,6 @@ treenode* next(treenode* nodo){
     }
 }
 */
-void printPair(Pair* pair) {
-    // Desreferencia los punteros para acceder a los valores
-    int* key = (int*)(pair->key);     // Suponiendo que las claves son enteros
-    int* value = (int*)(pair->value); // Suponiendo que los valores son enteros
-
-    // Imprime los valores
-    printf("Key: %d, Value: %d\n", *key, *value);
-}
-
 Pair * nextTreeMap(TreeMap * tree) {
   if (tree == NULL || tree->current == NULL){
     return NULL;
@@ -304,9 +313,12 @@ Pair * nextTreeMap(TreeMap * tree) {
   printPair(tree->current->pair);
   
   if (tree->current->right != NULL){
-    //TreeNode* temp = minimum(tree->current);
-    printPair(tree->current->right->pair);
-    return tree->current->right->pair;
+    TreeNode* temp = minimum(tree->current);
+    while (temp->left != NULL){
+      temp = temp->left;
+    }
+    printPair(temp->pair);
+    return temp->pair;
   } else {
     TreeNode* temp = tree->current;
     while (temp->parent != NULL && temp->parent->right == temp){
