@@ -70,3 +70,16 @@ treemap.c:84:19: error: ‘TreeMap’ has no member named ‘is_equal’
       |                   ^~
 Compilation failed
 ec4fc32
+Thu 14 Sep 2023 02:00:12 PM UTC: 
+ treemap.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+In file included from test.c:4:
+treemap.c: In function ‘searchTreeMap’:
+treemap.c:84:15: error: too few arguments to function ‘is_equal’
+   84 |     int cmp = is_equal(key, current->pair->key);
+      |               ^~~~~~~~
+treemap.c:22:5: note: declared here
+   22 | int is_equal(TreeMap* tree, void* key1, void* key2){
+      |     ^~~~~~~~
+Compilation failed
+a04a733
