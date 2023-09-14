@@ -308,6 +308,7 @@ Pair * nextTreeMap(TreeMap * tree) {
     while (temp->left != NULL){
       temp = temp->left;
     }
+    printPair(temp->pair);
     return temp->pair;
   } else {
     TreeNode* temp = tree->current;
