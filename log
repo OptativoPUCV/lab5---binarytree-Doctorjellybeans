@@ -164,3 +164,8 @@ treemap.c:169:7: error: ‘temp’ undeclared (first use in this function)
 treemap.c:169:7: note: each undeclared identifier is reported only once for each function it appears in
 Compilation failed
 7e6e27f
+Thu 14 Sep 2023 04:39:55 PM UTC: 
+ treemap.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+ tests:  0|0
+fcb6584

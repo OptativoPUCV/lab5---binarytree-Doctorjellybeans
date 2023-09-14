@@ -166,7 +166,7 @@ void delete(Tree* tree, int key) {
 void removeNode(TreeMap * tree, TreeNode* node) {
   if (tree == NULL || tree->root == NULL || node == NULL) return;
   
-  if (temp == NULL){ // el nodo no se encontro
+  if (node == NULL){ // el nodo no se encontro
     return;
   }
   
