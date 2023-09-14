@@ -192,3 +192,9 @@ treemap.c:172:36: error: ‘key’ undeclared (first use in this function); did 
 treemap.c:172:36: note: each undeclared identifier is reported only once for each function it appears in
 Compilation failed
 7a9f2c3
+Thu 14 Sep 2023 05:13:08 PM UTC: 
+ treemap.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+ tests:  17|3
+total_score: 30/70
+4554a90
