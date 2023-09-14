@@ -304,10 +304,7 @@ Pair * nextTreeMap(TreeMap * tree) {
   printPair(tree->current->pair);
   
   if (tree->current->right != NULL){
-    TreeNode* temp = tree->current;
-    while (temp->left != NULL){
-      temp = temp->left;
-    }
+    TreeNode* temp = minimum(tree->current);
     printPair(temp->pair);
     return temp->pair;
   } else {
