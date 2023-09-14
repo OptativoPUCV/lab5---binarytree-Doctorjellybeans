@@ -294,8 +294,9 @@ Pair * nextTreeMap(TreeMap * tree) {
   }
   
   if (tree->current->right != NULL){
+    TreeNode* temp = tree->current;
     tree->current = minimum(tree->current);
-    return tree->current->pair;
+    return temp->pair;
   } else {
     TreeNode* temp = tree->current;
     while (temp->parent != NULL && temp->parent->right == temp){
