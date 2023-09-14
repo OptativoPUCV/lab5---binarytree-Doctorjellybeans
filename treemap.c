@@ -82,7 +82,7 @@ Pair * searchTreeMap(TreeMap * tree, void* key) {
     // el puntero a la funcion del TreeNode (no tenia ni idea que podiamos hacer eso)
 
     int cmp = tree->lower_than(key, current->pair->key);
-    printf("cmp: %d, key: %p, pair->key: %p",cmp ,key,current->pair->key);
+    printf("cmp: %d, key: %d, pair->key: %d\n", cmp, *((int*)key), *((int*)current->pair->key));
 
     if (cmp == 0){
       tree->current = current;
