@@ -169,16 +169,12 @@ void removeNode(TreeMap * tree, TreeNode* node) {
 
     // Buscamos el nodo a eliminar y su padre
     while (temp != NULL) {
-        int cmp = tree->lower_than(node->pair->key, temp->pair->key);
-        if (cmp == 0) {
-            break; // Encontramos el nodo
-        }
-        parent = temp;
-        if (cmp < 0) {
-            temp = temp->left;
-        } else {
-            temp = temp->right;
-        }
+      parent = temp;  
+      if (tree->lower_than(node->pair->key,temp->pair->key)){
+        temp = temp->left;
+      } else {
+        temp = temp->right;
+      }
     }
 
     if (temp == NULL) {
