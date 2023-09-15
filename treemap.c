@@ -316,7 +316,7 @@ Pair * nextTreeMap(TreeMap * tree) {
   TreeNode* treeCurrentKey = tree->current->pair->key;
 
   while (nodoCurrent != NULL){
-    printPair(nodoCurrent->right->pair);
+    printPair(nodoCurrent->pair);
     if (is_equal(tree, nodoCurrentKey, treeCurrentKey)){
       printf("equal\n");
       if (nodoCurrent->right != NULL){
