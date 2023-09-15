@@ -315,26 +315,22 @@ Pair * nextTreeMap(TreeMap * tree) {
   TreeNode* successor = NULL;
 
   if (current->right != NULL) {
-    printf("primer if\n");
     successor = minimum(current->right);
   } else {
-    printf("else\n");
     TreeNode* ancestor = current->parent;
     while (ancestor != NULL && !tree->lower_than(ancestor->pair->key, current->pair->key)) {
-      printf("while\n");
       current = ancestor;
       ancestor = ancestor->parent;
-      printPair(current->pair);
     }
-    successor = current;
+    successor = ancestor;
   }
-  printf("FIN\n");
-  printPair(successor->pair);
+
+  
   if (successor != NULL) {
     tree->current = successor;
     return successor->pair;
   } else {
-    printf("wtf\n");
+    tree->current = NULL; 
     return NULL;
   }
 }
