@@ -310,7 +310,7 @@ Pair * nextTreeMap(TreeMap * tree) {
   if (tree == NULL || tree->current == NULL || tree->current->right->pair == NULL ){
     return NULL;
   }
-  printPair(tree->current->->pair);
+  printPair(tree->current->pair);
   TreeNode* current = tree->current;
   TreeNode* successor = NULL;
 
