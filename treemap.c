@@ -307,7 +307,7 @@ treenode* next(treenode* nodo){
 }
 */
 Pair * nextTreeMap(TreeMap * tree) {
-  if (tree == NULL || tree->current == NULL || tree->current->right->pair == NULL ){
+  if (tree == NULL || tree->current == NULL || tree->current->left->pair == NULL ){
     return NULL;
   }
   printPair(tree->current->pair);
