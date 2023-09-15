@@ -319,6 +319,7 @@ Pair * nextTreeMap(TreeMap * tree) {
   } else {
     TreeNode* ancestor = current->parent;
     while (ancestor != NULL && !tree->lower_than(ancestor->pair->key, current->pair->key)) {
+      printPair(ancestor->pair);
       current = ancestor;
       ancestor = ancestor->parent;
     }
