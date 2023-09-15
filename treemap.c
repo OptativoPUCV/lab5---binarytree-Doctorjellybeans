@@ -337,5 +337,4 @@ Pair * nextTreeMap(TreeMap * tree) {
     // Deja el nodo actual sin cambios.
     return NULL;
   }
-  }
 }
