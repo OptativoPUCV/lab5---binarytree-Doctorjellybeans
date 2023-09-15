@@ -328,7 +328,8 @@ Pair * nextTreeMap(TreeMap * tree) {
     }
     successor = ancestor;
   }
-
+  printf("FIN\n");
+  printPair(current->pair);
   if (successor != NULL) {
     tree->current = successor;
     return successor->pair;
