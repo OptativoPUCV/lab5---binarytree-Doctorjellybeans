@@ -307,6 +307,38 @@ treenode* next(treenode* nodo){
 }
 */
 Pair * nextTreeMap(TreeMap * tree) {
+    if (tree == NULL || tree->current == NULL) {
+        return NULL; // Árbol no inicializado o current es NULL
+    }
+
+    TreeNode* current = tree->current;
+
+    // Si el nodo actual tiene un subárbol derecho, busca el nodo mínimo en ese subárbol
+    if (current->right != NULL) {
+        current = current->right;
+        while (current->left != NULL) {
+            current = current->left;
+        }
+        tree->current = current; // Actualiza el puntero current del árbol
+        return current->pair;
+    }
+
+    // Si el nodo actual no tiene subárbol derecho, busca el ancestro más cercano
+    while (current->parent != NULL && current == current->parent->right) {
+        current = current->parent;
+    }
+
+    current = current->parent;
+    tree->current = current; // Actualiza el puntero current del árbol
+
+    if (current != NULL) {
+        return current->pair;
+    } else {
+        return NULL; // Llegamos al final del árbol
+    }
+}
+
+/*Pair * nextTreeMap(TreeMap * tree) {
   if (tree == NULL || tree->current == NULL){
     return NULL;
   }
@@ -344,4 +376,4 @@ Pair * nextTreeMap(TreeMap * tree) {
     tree->current = NULL; 
     return NULL;
   }
-}
+}*/
