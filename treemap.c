@@ -313,21 +313,25 @@ Pair * nextTreeMap(TreeMap * tree) {
   printPair(tree->current->pair);
   TreeNode* current = tree->current;
   TreeNode* successor = NULL;
-  if (tree->current->pair == NULL){
-    return NULL;
-  }
   if (current->right != NULL) {
     successor = minimum(current->right);
   } else {
-    TreeNode* ancestor = current->parent;
-    while (ancestor != NULL && !tree->lower_than(ancestor->pair->key, current->pair->key)) {
-      printPair(ancestor->pair);
-      current = ancestor;
-      ancestor = ancestor->parent;
+    TreeNode* ancestro = current->parent;
+    while (ancestro != NULL && !tree->lower_than(ancestro->pair->key, current->pair->key)) {
+      printPair(ancestro->pair);
+      current = ancestro;
+      ancestro = ancestro->parent;
     }
     successor = current;
+    if (ancestro != NULL){
+      tree->current = successor;
+      return successor->pair;
+    } else {
+      tree->current = NULL; 
+      return NULL;
+    }
   }
-
+  
   printf("a \n");
   if (successor != NULL) {
     tree->current = successor;
