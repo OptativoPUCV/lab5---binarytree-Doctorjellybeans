@@ -314,14 +314,14 @@ Pair * nextTreeMap(TreeMap * tree) {
   TreeNode* current = tree->current;
   TreeNode* successor = NULL;
 
-  // Si el nodo actual tiene un hijo derecho, encuentra el sucesor en ese subárbol.
   if (current->right != NULL) {
+    printf("current->right != NULL\n");
     successor = minimum(current->right);
   } else {
-    // Si no hay hijo derecho, sube por el árbol hasta encontrar el primer ancestro
-    // cuya clave sea mayor que la del nodo actual.
+    printf("else\n");
     TreeNode* ancestor = current->parent;
     while (ancestor != NULL && !tree->lower_than(ancestor->pair->key, current->pair->key)) {
+      printf("while\n");
       current = ancestor;
       ancestor = ancestor->parent;
     }
@@ -329,12 +329,9 @@ Pair * nextTreeMap(TreeMap * tree) {
   }
 
   if (successor != NULL) {
-    // Actualiza el nodo actual para la próxima llamada.
     tree->current = successor;
     return successor->pair;
   } else {
-    // Si no se encuentra un sucesor, significa que hemos llegado al final del TreeMap.
-    // Deja el nodo actual sin cambios.
     return NULL;
   }
 }
