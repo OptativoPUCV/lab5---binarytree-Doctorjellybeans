@@ -330,5 +330,5 @@ Pair * nextTreeMap(TreeMap * tree) {
     }
   }
   printPair(sucesor->pair);
-  return sucesor->pair;
+  return sucesor->right->pair;
 }
