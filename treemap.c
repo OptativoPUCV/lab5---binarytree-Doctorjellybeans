@@ -310,20 +310,23 @@ Pair * nextTreeMap(TreeMap * tree) {
   if (tree == NULL || tree->current == NULL){
     return NULL;
   }
-  printPair(tree->current->pair);
-  
-  if (tree->current->right != NULL){
-    TreeNode* temp = minimum(tree->current);
-    printPair(temp->pair);
-    return temp->pair;
-  } else {
-    TreeNode* temp = tree->current;
-    while (temp->parent != NULL && temp->parent->right == temp){
-      temp = temp->parent;
-      tree->current = temp;
-      return temp->parent->pair;
+  TreeNode* nodoCurrent = tree->root;
+  TreeNode* nodoCurrentKey = tree->root->pair->key;
+  TreeNode* sucesor = NULL;
+  TreeNode* treeCurrentKey = tree->current->pair->key;
+
+  while (current != NULL){
+    if (is_equal(tree, nodoCurrentKey, treeCurrentKey)){
+      if (nodoCurrent->right != NULL){
+        sucesor = minimum(nodoCurrent->right);
+      }
+      break;
+    } else if (tree->lower_than(treeCurrentKey,nodoCurrentKey)){
+      sucesor = nodoCurrent;
+      nodoCurrent=nodoCurrent->left;
+    } else {
+      nodoCurrent = nodoCurrent->right;
     }
   }
-
-  return NULL;
+  return sucesor->pair;
 }
