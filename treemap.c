@@ -311,9 +311,9 @@ Pair * nextTreeMap(TreeMap * tree) {
     return NULL;
   }
   TreeNode* nodoCurrent = tree->root;
-  TreeNode* nodoCurrentKey = tree->root->pair->value;
+  TreeNode* nodoCurrentKey = tree->root->pair->key;
   TreeNode* sucesor = NULL;
-  TreeNode* treeCurrentKey = tree->current->pair->value;
+  TreeNode* treeCurrentKey = tree->current->pair->key;
 
   while (nodoCurrent != NULL){
     printPair(nodoCurrent->pair);
