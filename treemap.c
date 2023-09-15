@@ -322,7 +322,7 @@ Pair * nextTreeMap(TreeMap * tree) {
       current = ancestor;
       ancestor = ancestor->parent;
     }
-    successor = ancestor;
+    successor = current;
   }
 
   
