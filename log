@@ -435,3 +435,12 @@ Fri 15 Sep 2023 11:11:26 PM UTC:
  tests:  22|2
 total_score: 50/70
 8e8081f
+Fri 15 Sep 2023 11:12:35 PM UTC: 
+ treemap.c | 2 ++
+ 1 file changed, 2 insertions(+)
+In file included from test.c:4:
+treemap.c:341:1: error: expected identifier or ‘(’ before ‘}’ token
+  341 | }
+      | ^
+Compilation failed
+1c4637c

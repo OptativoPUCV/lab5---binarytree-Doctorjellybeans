@@ -334,6 +334,8 @@ Pair * nextTreeMap(TreeMap * tree) {
     return successor->pair;
   } else {
     // Si no se encuentra un sucesor, significa que hemos llegado al final del TreeMap.
+    // Deja el nodo actual sin cambios.
     return NULL;
+  }
   }
 }
