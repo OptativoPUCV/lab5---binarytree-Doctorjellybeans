@@ -318,17 +318,20 @@ Pair * nextTreeMap(TreeMap * tree) {
   while (nodoCurrent != NULL){
     printPair(nodoCurrent->right->pair);
     if (is_equal(tree, nodoCurrentKey, treeCurrentKey)){
+      printf("equal\n");
       if (nodoCurrent->right != NULL){
         sucesor = minimum(nodoCurrent->right);
       }
       break;
     } else if (tree->lower_than(treeCurrentKey,nodoCurrentKey)){
+      printf("lower_than\n");
       sucesor = nodoCurrent;
       nodoCurrent=nodoCurrent->left;
     } else {
+      printf("not_lower_than\n");
       nodoCurrent = nodoCurrent->right;
     }
   }
   printPair(sucesor->pair);
-  return sucesor->right->pair;
+  return sucesor->pair;
 }
