@@ -326,7 +326,7 @@ Pair * nextTreeMap(TreeMap * tree) {
     successor = current;
   }
 
-  printPair("a\n");
+  printf("a \n");
   if (successor != NULL) {
     tree->current = successor;
     return successor->pair;
