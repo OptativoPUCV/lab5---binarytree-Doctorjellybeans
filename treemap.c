@@ -283,7 +283,7 @@ void printPair(Pair* pair) {
     int* value = (int*)(pair->value); // Suponiendo que los valores son enteros
 
     // Imprime los valores
-    printf("  Key: %d, Value: %d\n", *key, *value);
+    printf("Key: %d, Value: %d\n", *key, *value);
 }
 
 /*
@@ -315,7 +315,7 @@ Pair * nextTreeMap(TreeMap * tree) {
   TreeNode* successor = NULL;
 
   if (current->right != NULL) {
-    printf("current->right != NULL\n");
+    printf("primer if\n");
     successor = minimum(current->right);
   } else {
     printf("else\n");
