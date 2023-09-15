@@ -326,10 +326,10 @@ Pair * nextTreeMap(TreeMap * tree) {
     } else if (tree->lower_than(treeCurrentKey,nodoCurrentKey)){
       printf("lower_than\n");
       sucesor = nodoCurrent;
-      nodoCurrent=nodoCurrent->left;
+      nodoCurrent=nodoCurrent->right;
     } else {
       printf("not_lower_than\n");
-      nodoCurrent = nodoCurrent->right;
+      nodoCurrent = nodoCurrent->left;
     }
   }
   printPair(sucesor->pair);
