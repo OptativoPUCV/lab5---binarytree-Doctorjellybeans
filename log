@@ -522,3 +522,19 @@ Fri 15 Sep 2023 11:34:16 PM UTC:
  tests:  23|2
 total_score: 50/70
 c0eb4c7
+Fri 15 Sep 2023 11:37:15 PM UTC: 
+ treemap.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+In file included from test.c:4:
+treemap.c: In function ‘nextTreeMap’:
+treemap.c:329:13: error: passing argument 1 of ‘printPair’ from incompatible pointer type [-Werror=incompatible-pointer-types]
+  329 |   printPair("a\n");
+      |             ^~~~~
+      |             |
+      |             char *
+treemap.c:280:22: note: expected ‘Pair *’ but argument is of type ‘char *’
+  280 | void printPair(Pair* pair) {
+      |                ~~~~~~^~~~
+cc1: all warnings being treated as errors
+Compilation failed
+049fc67
