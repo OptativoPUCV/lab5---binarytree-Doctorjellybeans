@@ -316,6 +316,7 @@ Pair * nextTreeMap(TreeMap * tree) {
   TreeNode* treeCurrentKey = tree->current->pair->key;
 
   while (nodoCurrent != NULL){
+    printPair(nodoCurrent->pair);
     if (is_equal(tree, nodoCurrentKey, treeCurrentKey)){
       if (nodoCurrent->right != NULL){
         sucesor = minimum(nodoCurrent->right);
