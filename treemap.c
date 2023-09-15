@@ -283,7 +283,7 @@ void printPair(Pair* pair) {
     int* value = (int*)(pair->value); // Suponiendo que los valores son enteros
 
     // Imprime los valores
-    printf("Key: %d, Value: %d\n", *key, *value);
+    printf("  Key: %d, Value: %d\n", *key, *value);
 }
 
 /*
@@ -307,31 +307,33 @@ treenode* next(treenode* nodo){
 }
 */
 Pair * nextTreeMap(TreeMap * tree) {
-  if (tree == NULL || tree->current == NULL){
+  if (tree == NULL || tree->current == NULL) {
     return NULL;
   }
-  TreeNode* nodoCurrent = tree->root;
-  TreeNode* nodoCurrentKey = tree->root->pair->key;
-  TreeNode* sucesor = NULL;
-  TreeNode* treeCurrentKey = tree->current->pair->key;
 
-  while (nodoCurrent != NULL){
-    printPair(nodoCurrent->pair);
-    if (is_equal(tree, nodoCurrentKey, treeCurrentKey)){
-      printf("equal\n");
-      if (nodoCurrent->right != NULL){
-        sucesor = minimum(nodoCurrent->right);
-      }
-      break;
-    } else if (tree->lower_than(treeCurrentKey,nodoCurrentKey)){
-      printf("lower_than\n");
-      sucesor = nodoCurrent;
-      nodoCurrent=nodoCurrent->right;
-    } else {
-      printf("not_lower_than\n");
-      nodoCurrent = nodoCurrent->left;
+  TreeNode* current = tree->current;
+  TreeNode* successor = NULL;
+
+  // Si el nodo actual tiene un hijo derecho, encuentra el sucesor en ese subárbol.
+  if (current->right != NULL) {
+    successor = minimum(current->right);
+  } else {
+    // Si no hay hijo derecho, sube por el árbol hasta encontrar el primer ancestro
+    // cuya clave sea mayor que la del nodo actual.
+    TreeNode* ancestor = current->parent;
+    while (ancestor != NULL && !tree->lower_than(ancestor->pair->key, current->pair->key)) {
+      current = ancestor;
+      ancestor = ancestor->parent;
     }
+    successor = ancestor;
   }
-  printPair(sucesor->pair);
-  return sucesor->pair;
+
+  if (successor != NULL) {
+    // Actualiza el nodo actual para la próxima llamada.
+    tree->current = successor;
+    return successor->pair;
+  } else {
+    // Si no se encuentra un sucesor, significa que hemos llegado al final del TreeMap.
+    return NULL;
+  }
 }
