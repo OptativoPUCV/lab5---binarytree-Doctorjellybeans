@@ -328,5 +328,6 @@ Pair * nextTreeMap(TreeMap * tree) {
       nodoCurrent = nodoCurrent->right;
     }
   }
+  printPair(sucesor->pair);
   return sucesor->pair;
 }
