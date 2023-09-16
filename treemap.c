@@ -254,19 +254,29 @@ Pair * searchTreeMap(TreeMap * tree, void* key) {
 
 
 Pair * upperBound(TreeMap * tree, void* key) {
+  if (tree == NULL || tree->root == NULL) {
     return NULL;
-}
-/*
-TreeNode * minimum(TreeNode * nodoX){
-  if (nodoX == NULL) return NULL;
-  
-  TreeNode* temp = nodoX;
-  while (temp->left != NULL){
-    temp = temp->left;
   }
-  return temp;
+
+  TreeNode* current == tree->root;
+  TreeNode* ub_node = NULL; // nodo auxiliar
+
+  while (current != NULL){
+    if (tree->lower_than(current->pair->key,key)){
+      ub_node = current;
+      current = current->left;
+    }
+  } else {
+    return current->pair;
+  }
+  
+  if (ub_node != NULL){
+    return ub_node->pair;
+  }
+
+  return NULL;
 }
-*/
+
 Pair * firstTreeMap(TreeMap * tree) {
   if (tree == NULL || tree->root == NULL) return NULL;
 
@@ -277,6 +287,7 @@ Pair * firstTreeMap(TreeMap * tree) {
   return NULL;
 }
 
+// una funcion adicional para depurar codigo 
 void printPair(Pair* pair) {
     // Desreferencia los punteros para acceder a los valores
     int* key = (int*)(pair->key);     // Suponiendo que las claves son enteros
@@ -286,26 +297,6 @@ void printPair(Pair* pair) {
     printf("Key: %d, Value: %d\n", *key, *value);
 }
 
-/*
-treenode* next(treenode* nodo){
-  if (nodo == NULL) return NULL;
-  Posclase #6.2 parte online 4
-  if(node->right != NULL) {
-    // Caso 1: Hay un subárbol derecho
-    treenode* temp = node;
-    while (temp->left != NULL) {
-      temp = temp->left;
-    }
-    return temp;
-  } else {
-    // Caso 2: No hay un subárbol derecho
-    treenode* temp = node;
-    while(temp->parent != NULL && temp->parent->right == temp)
-      temp = temp->parent;
-      return temp->parent;
-    }
-}
-*/
 Pair * nextTreeMap(TreeMap * tree) {
     if (tree == NULL || tree->current == NULL) {
         return NULL; // Árbol no inicializado o current es NULL
@@ -337,43 +328,3 @@ Pair * nextTreeMap(TreeMap * tree) {
         return NULL; // Llegamos al final del árbol
     }
 }
-
-/*Pair * nextTreeMap(TreeMap * tree) {
-  if (tree == NULL || tree->current == NULL){
-    return NULL;
-  }
-  if (tree->current->right == NULL && tree->current->parent == NULL) {
-    tree->current = NULL;  // Establecer current en NULL para indicar que hemos alcanzado el final
-    return NULL;
-  }
-  printPair(tree->current->pair);
-  TreeNode* current = tree->current;
-  TreeNode* successor = NULL;
-  if (current->right != NULL) {
-    successor = minimum(current->right);
-  } else {
-    TreeNode* ancestro = current->parent;
-    while (ancestro != NULL && !tree->lower_than(ancestro->pair->key, current->pair->key)) {
-      printPair(ancestro->pair);
-      current = ancestro;
-      ancestro = ancestro->parent;
-    }
-    successor = current;
-    if (ancestro != NULL){
-      tree->current = successor;
-      return successor->pair;
-    } else {
-      tree->current = NULL; 
-      return NULL;
-    }
-  }
-  
-  printf("a \n");
-  if (successor != NULL) {
-    tree->current = successor;
-    return successor->pair;
-  } else {
-    tree->current = NULL; 
-    return NULL;
-  }
-}*/
